@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://1kqampsip8k0"]
+
+[ext_resource type="Texture2D" uid="uid://dybrjo8507l3v" path="res://asset/AI/Stone_Black_x2.png" id="1_apq1g"]
+
+[node name="black" type="Sprite2D"]
+scale = Vector2(2, 2)
+texture = ExtResource("1_apq1g")

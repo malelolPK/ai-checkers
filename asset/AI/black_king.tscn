@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ceotm5ctb4osj"]
+
+[ext_resource type="Texture2D" uid="uid://p612f5bdkeqj" path="res://asset/AI/Stone_Black_2_x2.png" id="1_edxal"]
+
+[node name="blackKing" type="Sprite2D"]
+scale = Vector2(2, 2)
+texture = ExtResource("1_edxal")

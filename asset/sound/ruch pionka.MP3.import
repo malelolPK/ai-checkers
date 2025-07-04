@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://v3yw61y3jpjj"
+path="res://.godot/imported/ruch pionka.MP3-75d81ae0410b0f0091b0911f4af58e84.mp3str"
+
+[deps]
+
+source_file="res://asset/sound/ruch pionka.MP3"
+dest_files=["res://.godot/imported/ruch pionka.MP3-75d81ae0410b0f0091b0911f4af58e84.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

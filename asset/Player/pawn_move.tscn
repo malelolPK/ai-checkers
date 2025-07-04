@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://beasx481r6h7o"]
+
+[ext_resource type="Texture2D" uid="uid://dr0a8niwv1pms" path="res://asset/Player/pawn_move_new.png" id="1_mhnf8"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gv7ft"]
+
+[node name="pawnMove" type="Sprite2D"]
+material = SubResource("CanvasItemMaterial_gv7ft")
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_mhnf8")

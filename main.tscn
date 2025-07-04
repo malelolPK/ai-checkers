@@ -1,0 +1,274 @@
+[gd_scene load_steps=27 format=3 uid="uid://oqakejtv3hg8"]
+
+[ext_resource type="Texture2D" uid="uid://dj4hd73a1o0sh" path="res://asset/Board/1 test.png" id="1_k8t23"]
+[ext_resource type="Texture2D" uid="uid://brsmjxm20d6g1" path="res://asset/Board/2 test.png" id="2_cx83l"]
+[ext_resource type="Script" path="res://main.gd" id="3_36v3y"]
+[ext_resource type="PackedScene" uid="uid://bbslywmnt2lku" path="res://asset/Player/white.tscn" id="4_wniga"]
+[ext_resource type="PackedScene" uid="uid://1kqampsip8k0" path="res://asset/AI/black.tscn" id="5_343aa"]
+[ext_resource type="PackedScene" uid="uid://dqnwvtybvgrkw" path="res://asset/Player/white_king.tscn" id="6_exi07"]
+[ext_resource type="PackedScene" uid="uid://ceotm5ctb4osj" path="res://asset/AI/black_king.tscn" id="7_y7yr6"]
+[ext_resource type="PackedScene" uid="uid://beasx481r6h7o" path="res://asset/Player/pawn_move.tscn" id="8_v4hls"]
+[ext_resource type="Texture2D" uid="uid://p612f5bdkeqj" path="res://asset/AI/Stone_Black_2_x2.png" id="9_htdsh"]
+[ext_resource type="Texture2D" uid="uid://dybrjo8507l3v" path="res://asset/AI/Stone_Black_x2.png" id="10_rfgg8"]
+[ext_resource type="Texture2D" uid="uid://cuv01sr7tc36u" path="res://asset/Player/Stone_White_2_x2.png" id="10_rx21i"]
+[ext_resource type="Texture2D" uid="uid://bpt7ep6jyfjmm" path="res://asset/UI/bbbb.png" id="10_wdv04"]
+[ext_resource type="Texture2D" uid="uid://dqkqskkckwu31" path="res://asset/Player/Stone_White_x2.png" id="11_5givc"]
+[ext_resource type="PackedScene" uid="uid://blxx2o40lblv1" path="res://asset/FUNKCJE LOGIKI GRY/game_over.tscn" id="14_2n1lf"]
+[ext_resource type="AudioStream" uid="uid://c5ysq176wy5l6" path="res://asset/sound/game_over.MP3" id="15_xeydu"]
+[ext_resource type="AudioStream" uid="uid://v3yw61y3jpjj" path="res://asset/sound/ruch pionka.MP3" id="16_boip6"]
+[ext_resource type="AudioStream" uid="uid://dj8bsd3q14var" path="res://asset/sound/zbicie.MP3" id="17_qjlge"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wtpf0"]
+texture = ExtResource("1_k8t23")
+texture_region_size = Vector2i(100, 100)
+1:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0vhg0"]
+texture = ExtResource("2_cx83l")
+texture_region_size = Vector2i(100, 100)
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_th6fg"]
+tile_size = Vector2i(100, 100)
+sources/2 = SubResource("TileSetAtlasSource_0vhg0")
+sources/1 = SubResource("TileSetAtlasSource_wtpf0")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w8qux"]
+bg_color = Color(0.545098, 0.270588, 0.0745098, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oljtn"]
+bg_color = Color(0.717647, 0.388235, 0.152941, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.752941, 0.572549, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_size = 10
+
+[sub_resource type="SystemFont" id="SystemFont_huba7"]
+font_names = PackedStringArray("Georgia")
+msdf_size = 54
+
+[sub_resource type="SystemFont" id="SystemFont_oahe4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fqg7s"]
+bg_color = Color(0.545098, 0.270588, 0.0745098, 1)
+border_width_left = 5
+border_width_right = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qnkm2"]
+bg_color = Color(0.717647, 0.388235, 0.152941, 1)
+border_width_left = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[node name="Main" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_th6fg")
+cell_quadrant_size = 64
+format = 2
+script = ExtResource("3_36v3y")
+white_scene = ExtResource("4_wniga")
+black_scene = ExtResource("5_343aa")
+white_king_scene = ExtResource("6_exi07")
+black_king_scene = ExtResource("7_y7yr6")
+pawn_move_scene = ExtResource("8_v4hls")
+
+[node name="ai" type="Panel" parent="."]
+offset_left = 800.0
+offset_right = 1000.0
+offset_bottom = 200.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_w8qux")
+
+[node name="Panel" type="Panel" parent="ai"]
+z_index = 2
+layout_mode = 0
+offset_left = 25.0
+offset_top = 50.0
+offset_right = 175.0
+offset_bottom = 150.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_oljtn")
+
+[node name="imagine_black_pawn" type="Sprite2D" parent="ai/Panel"]
+position = Vector2(45, 60)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("9_htdsh")
+
+[node name="text_komputer" type="Label" parent="ai/Panel"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 10.0
+offset_right = 132.0
+offset_bottom = 37.0
+theme_override_fonts/font = SubResource("SystemFont_huba7")
+theme_override_font_sizes/font_size = 20
+text = "KOMPUTER"
+horizontal_alignment = 1
+
+[node name="info_komputer" type="Label" parent="ai/Panel"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 35.0
+offset_right = 120.0
+offset_bottom = 87.0
+theme_override_fonts/font = SubResource("SystemFont_oahe4")
+theme_override_font_sizes/font_size = 35
+text = "0"
+
+[node name="info" type="Panel" parent="."]
+offset_left = 800.0
+offset_top = 200.0
+offset_right = 1000.0
+offset_bottom = 600.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_fqg7s")
+
+[node name="Panel1" type="Panel" parent="info"]
+z_index = 2
+layout_mode = 0
+offset_left = 12.5
+offset_top = 50.0
+offset_right = 187.5
+offset_bottom = 200.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_oljtn")
+
+[node name="imagine_black_pawn" type="Sprite2D" parent="info/Panel1"]
+visible = false
+position = Vector2(85, 65)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("10_rfgg8")
+
+[node name="imagine_white_pawn" type="Sprite2D" parent="info/Panel1"]
+position = Vector2(85, 65)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("11_5givc")
+
+[node name="text_turn" type="Label" parent="info/Panel1"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 160.0
+offset_bottom = 37.0
+theme_override_fonts/font = SubResource("SystemFont_huba7")
+theme_override_font_sizes/font_size = 19
+text = "TURA GRACZA:"
+horizontal_alignment = 1
+
+[node name="info_who_turn" type="Label" parent="info/Panel1"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 95.0
+offset_right = 142.0
+offset_bottom = 147.0
+theme_override_fonts/font = SubResource("SystemFont_oahe4")
+theme_override_font_sizes/font_size = 35
+text = "GRACZ"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel2" type="Panel" parent="info"]
+z_index = 2
+layout_mode = 0
+offset_left = 12.5
+offset_top = 220.0
+offset_right = 187.5
+offset_bottom = 370.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_oljtn")
+
+[node name="text_legal_move" type="Label" parent="info/Panel2"]
+visible = false
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 160.0
+offset_bottom = 135.0
+theme_override_fonts/font = SubResource("SystemFont_huba7")
+theme_override_font_sizes/font_size = 25
+text = "PROSZĘ WYKONAĆ LEGALNY RUCH"
+horizontal_alignment = 1
+autowrap_mode = 3
+text_overrun_behavior = 2
+uppercase = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 825.0
+offset_top = 650.0
+offset_right = 865.0
+offset_bottom = 690.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Control"]
+z_index = 1
+position = Vector2(75.065, -250)
+scale = Vector2(0.870963, 3.5426)
+texture = ExtResource("10_wdv04")
+
+[node name="player" type="Panel" parent="."]
+offset_left = 800.0
+offset_top = 600.0
+offset_right = 1000.0
+offset_bottom = 800.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_qnkm2")
+
+[node name="Panel" type="Panel" parent="player"]
+z_index = 1
+layout_mode = 0
+offset_left = 25.0
+offset_top = 50.0
+offset_right = 175.0
+offset_bottom = 150.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_oljtn")
+
+[node name="imagine_white_pawn" type="Sprite2D" parent="player/Panel"]
+position = Vector2(45, 60)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("10_rx21i")
+
+[node name="text_gracz" type="Label" parent="player/Panel"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 10.0
+offset_right = 132.0
+offset_bottom = 37.0
+theme_override_fonts/font = SubResource("SystemFont_huba7")
+theme_override_font_sizes/font_size = 20
+text = "GRACZ"
+horizontal_alignment = 1
+
+[node name="info_gracz" type="Label" parent="player/Panel"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 35.0
+offset_right = 120.0
+offset_bottom = 87.0
+theme_override_fonts/font = SubResource("SystemFont_oahe4")
+theme_override_font_sizes/font_size = 35
+text = "0"
+
+[node name="game_over" parent="." instance=ExtResource("14_2n1lf")]
+visible = false
+offset = Vector2(150, 150)
+transform = Transform2D(1, 0, 0, 1, 150, 150)
+
+[node name="Audio_game_over" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_xeydu")
+
+[node name="Audio_pawn_move" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_boip6")
+
+[node name="Audio_attack" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_qjlge")
+
+[connection signal="exit" from="game_over" to="TileMap" method="_on_game_over_exit"]
+[connection signal="restart" from="game_over" to="TileMap" method="_on_game_over_restart"]

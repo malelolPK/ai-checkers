@@ -1,0 +1,38 @@
+[gd_scene load_steps=12 format=3 uid="uid://oqakejtv3hg8"]
+
+[ext_resource type="Texture2D" uid="uid://bllqtjbqta0n" path="res://PlanszaONE.png" id="1_3v1id"]
+[ext_resource type="Texture2D" uid="uid://dxrt8mlx88oke" path="res://PlanszaTWO.png" id="2_aqpur"]
+[ext_resource type="Script" path="res://main.gd" id="3_36v3y"]
+[ext_resource type="PackedScene" uid="uid://bbslywmnt2lku" path="res://asset/Player/white.tscn" id="4_wniga"]
+[ext_resource type="PackedScene" uid="uid://1kqampsip8k0" path="res://asset/AI/black.tscn" id="5_343aa"]
+[ext_resource type="PackedScene" uid="uid://dqnwvtybvgrkw" path="res://asset/Player/white_king.tscn" id="6_exi07"]
+[ext_resource type="PackedScene" uid="uid://ceotm5ctb4osj" path="res://asset/AI/black_king.tscn" id="7_y7yr6"]
+[ext_resource type="PackedScene" uid="uid://beasx481r6h7o" path="res://asset/Player/pawn_move.tscn" id="8_v4hls"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5y1uf"]
+texture = ExtResource("1_3v1id")
+texture_region_size = Vector2i(100, 100)
+1:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3efmk"]
+texture = ExtResource("2_aqpur")
+texture_region_size = Vector2i(100, 100)
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_th6fg"]
+tile_size = Vector2i(100, 100)
+sources/2 = SubResource("TileSetAtlasSource_3efmk")
+sources/1 = SubResource("TileSetAtlasSource_5y1uf")
+
+[node name="Main" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_th6fg")
+cell_quadrant_size = 64
+format = 2
+script = ExtResource("3_36v3y")
+white_scene = ExtResource("4_wniga")
+black_scene = ExtResource("5_343aa")
+white_king_scene = ExtResource("6_exi07")
+black_king_scene = ExtResource("7_y7yr6")
+pawn_move_scene = ExtResource("8_v4hls")

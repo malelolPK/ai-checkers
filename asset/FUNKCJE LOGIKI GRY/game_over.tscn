@@ -1,0 +1,104 @@
+[gd_scene load_steps=7 format=3 uid="uid://blxx2o40lblv1"]
+
+[ext_resource type="Script" path="res://asset/FUNKCJE LOGIKI GRY/game_over.gd" id="1_x6wky"]
+[ext_resource type="Texture2D" uid="uid://cuv01sr7tc36u" path="res://asset/Player/Stone_White_2_x2.png" id="2_06ow5"]
+[ext_resource type="Texture2D" uid="uid://p612f5bdkeqj" path="res://asset/AI/Stone_Black_2_x2.png" id="3_rolv8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dgh38"]
+bg_color = Color(0.717647, 0.388235, 0.152941, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ky48"]
+bg_color = Color(0.184314, 0.345098, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_llr1t"]
+bg_color = Color(0.184314, 0.345098, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="game_over" type="CanvasLayer"]
+script = ExtResource("1_x6wky")
+
+[node name="Game_over_panel" type="Panel" parent="."]
+offset_left = 100.0
+offset_top = 100.0
+offset_right = 600.0
+offset_bottom = 450.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dgh38")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 159.0
+offset_top = 94.0
+offset_right = 359.0
+offset_bottom = 174.0
+theme_override_font_sizes/font_size = 25
+text = "WYGRAŁ GRACZ:"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="who_win" type="Label" parent="."]
+offset_left = 370.0
+offset_top = 111.0
+offset_right = 519.0
+offset_bottom = 156.0
+theme_override_font_sizes/font_size = 30
+text = "CZŁOWIEK"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="white" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(350, 215)
+scale = Vector2(2, 2)
+texture = ExtResource("2_06ow5")
+
+[node name="black" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(350, 215)
+scale = Vector2(2, 2)
+texture = ExtResource("3_rolv8")
+
+[node name="RestartButton" type="Button" parent="."]
+offset_left = 176.0
+offset_top = 281.0
+offset_right = 526.0
+offset_bottom = 349.0
+theme_override_font_sizes/font_size = 39
+theme_override_styles/normal = SubResource("StyleBoxFlat_3ky48")
+text = "Zagraj jeszcze raz"
+
+[node name="ExitButton" type="Button" parent="."]
+offset_left = 265.0
+offset_top = 362.0
+offset_right = 435.0
+offset_bottom = 429.0
+theme_override_font_sizes/font_size = 39
+theme_override_styles/normal = SubResource("StyleBoxFlat_llr1t")
+text = "Wyjście"
+
+[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
